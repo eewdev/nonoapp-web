@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>NoNoApp request</title>
+<!--
+  Trusted-person page for NoNoApp. Everything happens in this browser: the request data
+  is in the part of the link after "#", which browsers never send to the server. The PIN
+  derives the key (PBKDF2-HMAC-SHA256) that decrypts the code (AES-GCM). No data is sent
+  anywhere. Must match BuddyCrypto in BuddyStore.kt.
+-->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <div class="brand">NoNoApp</div>
+  <div class="card" id="pin-view">
+    <h1 id="title"></h1>
+    <p class="big" id="subtitle"></p>
+    <form id="form" autocomplete="off">
+      <label for="pin" id="pin-label"></label>
+      <input id="pin" type="password" inputmode="numeric" pattern="[0-9]*" minlength="6" required>
+      <button id="submit" type="submit"></button>
+      <div class="error" id="error" role="alert"></div>
+    </form>
+  </div>
+  <div class="card hidden" id="code-view">
+    <h1 id="request"></h1>
+    <p id="hint"></p>
+    <div class="code" id="code"></div>
+    <p id="decide"></p>
+  </div>
+  <div class="card hidden" id="invalid-view">
+    <h1 id="invalid-title"></h1>
+    <p id="invalid-body"></p>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
